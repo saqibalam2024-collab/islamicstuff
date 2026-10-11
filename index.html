@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Resources - Khair Community Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            color: #ddd;
+        }
+        
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            padding: 0 1rem;
+        }
+        
+        .search-container input {
+            padding: 0.8rem 1.5rem;
+            width: 100%;
+            max-width: 400px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .search-container input:focus {
+            outline: none;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.6);
+        }
+        
+        .secret-message {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            z-index: 1000;
+            animation: slideIn 0.5s ease-in-out;
+        }
+        
+        .secret-message.show {
+            display: block;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-header {
+            background-color: #667eea;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .card-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-body {
+            padding: 2rem;
+        }
+        
+        .card-body p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .prayer-times {
+            background: #f5f5f5;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        
+        .prayer-time-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .prayer-time-row:last-child {
+            border-bottom: none;
+        }
+        
+        .prayer-name {
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .prayer-clock {
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #667eea;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #764ba2;
+        }
+        
+        .quran-info {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .quran-info h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .quran-info a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .quran-info a:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .khair-info {
+            background-color: #fff9e6;
+            border-left: 5px solid #667eea;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+        
+        .khair-info strong {
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🕌 Islamic Resources</h1>
+        <p>Khair Community Center - Collegeville, PA</p>
+    </header>
+    
+    <div class="container">
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="searchBar" 
+                placeholder="Search Islamic resources..." 
+                aria-label="Search"
+            >
+        </div>
+        
+        <div id="secretMessage" class="secret-message">
+            Welcome! 🎉
+        </div>
+        
+        <div class="quran-info">
+            <h2>📖 The Quran</h2>
+            <p>The Quran is the holy book of Islam, believed by Muslims to be a revelation from God. It is organized into 114 chapters (Surahs) and provides guidance on every aspect of life.</p>
+            <p>Explore the Quran online at: <a href="https://www.quran.com/" target="_blank">Quran.com</a></p>
+        </div>
+        
+        <div class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h2>⏰ Prayer Times</h2>
+                </div>
+                <div class="card-body">
+                    <p><strong>Khair Community Center</strong></p>
+                    <p>6 Williamson Park Drive, Collegeville, PA 19426</p>
+                    
+                    <div class="khair-info">
+                        <strong>📍 Location:</strong> Collegeville, Pennsylvania<br>
+                        <strong>🕐 Prayer Times (Today's Example):</strong>
+                    </div>
+                    
+                    <div class="prayer-times">
+                        <div class="prayer-time-row">
+                            <span class="prayer-name">Fajr</span>
+                            <span class="prayer-clock" id="fajr">6:15 AM</span>
+                        </div>
+                        <div class="prayer-time-row">
+                            <span class="prayer-name">Dhuhr</span>
+                            <span class="prayer-clock" id="dhuhr">12:45 PM</span>
+                        </div>
+                        <div class="prayer-time-row">
+                            <span class="prayer-name">Asr</span>
+                            <span class="prayer-clock" id="asr">3:30 PM</span>
+                        </div>
+                        <div class="prayer-time-row">
+                            <span class="prayer-name">Maghrib</span>
+                            <span class="prayer-clock" id="maghrib">6:15 PM</span>
+                        </div>
+                        <div class="prayer-time-row">
+                            <span class="prayer-name">Isha</span>
+                            <span class="prayer-clock" id="isha">7:45 PM</span>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                        <em>Prayer times vary daily. For accurate times specific to today, visit Khair Community Center's website or call.</em>
+                    </p>
+                    
+                    <a href="https://www.prayer-times.com/" class="btn" target="_blank">View Full Prayer Schedule</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2>🕌 Khair Community Center</h2>
+                </div>
+                <div class="card-body">
+                    <p>The Khair Community Center serves as a focal point for Islamic education, worship, and community activities in the Collegeville area.</p>
+                    
+                    <div class="khair-info">
+                        <strong>📌 Address:</strong><br>
+                        6 Williamson Park Drive<br>
+                        Collegeville, PA 19426
+                    </div>
+                    
+                    <div class="khair-info">
+                        <strong>Services Offered:</strong><br>
+                        ✓ Five Daily Prayers (Salah)<br>
+                        ✓ Quran Study Circles<br>
+                        ✓ Islamic Education Programs<br>
+                        ✓ Community Events<br>
+                        ✓ Youth Programs
+                    </div>
+                    
+                    <p style="margin-top: 1rem; color: #666; font-size: 0.9rem;">
+                        Contact the center for more information about membership, classes, and events.
+                    </p>
+                    
+                    <a href="https://www.khair.org/" class="btn" target="_blank">Visit Khair Website</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2>📚 Islamic Resources</h2>
+                </div>
+                <div class="card-body">
+                    <p>Explore essential Islamic resources and learning materials:</p>
+                    
+                    <div class="khair-info">
+                        <strong>Learning Resources:</strong><br>
+                        • <a href="https://www.quran.com/" target="_blank" style="color: #667eea;">Quran.com</a> - Read the Quran with translations<br>
+                        • <a href="https://sunnah.com/" target="_blank" style="color: #667eea;">Sunnah.com</a> - Hadith collections<br>
+                        • <a href="https://www.islamic-dictionary.com/" target="_blank" style="color: #667eea;">Islamic Dictionary</a> - Learn Islamic terms<br>
+                        • <a href="https://www.islamicfinder.org/" target="_blank" style="color: #667eea;">Islamic Finder</a> - Prayer times & Qibla direction
+                    </div>
+                    
+                    <p style="margin-top: 1rem;">Deepen your Islamic knowledge through reliable sources and community engagement.</p>
+                    
+                    <a href="https://www.dar-alifta.org/" class="btn" target="_blank">Islamic Guidance</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 Islamic Resources - Khair Community Center</p>
+        <p>Collegeville, Pennsylvania</p>
+        <p>May Allah bless our community. Ameen.</p>
+    </footer>
+    
+    <script>
+        // Secret code functionality
+        const searchBar = document.getElementById('searchBar');
+        const secretMessage = document.getElementById('secretMessage');
+        
+        searchBar.addEventListener('input', function(e) {
+            const searchValue = e.target.value;
+            
+            if (searchValue === '12345') {
+                secretMessage.classList.add('show');
+                
+                // Hide message after 5 seconds
+                setTimeout(function() {
+                    secretMessage.classList.remove('show');
+                }, 5000);
+                
+                // Clear the search bar
+                searchBar.value = '';
+            }
+        });
+        
+        // Optional: Update prayer times dynamically (placeholder for now)
+        function updatePrayerTimes() {
+            // This is a placeholder. In a real implementation, 
+            // you would fetch actual prayer times from an API
+            // or from Khair Community Center's schedule
+            console.log('Prayer times loaded for Collegeville, PA');
+        }
+        
+        // Initialize on page load
+        window.addEventListener('load', function() {
+            updatePrayerTimes();
+        });
+    </script>
+</body>
+</html>
